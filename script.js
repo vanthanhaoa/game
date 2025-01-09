@@ -39,42 +39,6 @@ let story = {
     ]
   },
   lab: {
-    text: "Phòng thí nghiệm chứa những tài liệu bị bỏ dở và những mẫu vật lạ. Bạn nhận ra rằng có một sự kiện kỳ lạ đã xảy ra ở đây.",
-    choices: [
-      { text: "Tiếp tục điều tra", next: "end" },
-      { text: "Rời đi", next: "leave" }
-    ]
-  },
-  leave: {
-    text: "Bạn quyết định rời khỏi bệnh viện. Cuộc phiêu lưu kết thúc tại đây.",
-    choices: []
-  },
-  end: {
-    text: "Bạn đã khám phá ra những bí mật tối tăm trong bệnh viện bỏ hoang. Một sự kiện kỳ bí đã được hé lộ. Câu chuyện kết thúc tại đây.",
-    choices: []
-  }
-};
-function startStory() {
-  showStory("start");
-}
-
-// Hàm hiển thị câu chuyện và các lựa chọn
-function showStory(scene) {
-  storyText.textContent = story[scene].text;
-  choicesContainer.innerHTML = "";
-
-  story[scene].choices.forEach(choice => {
-    let button = document.createElement("button");
-    button.textContent = choice.text;
-    button.onclick = () => showStory(choice.next);
-    choicesContainer.appendChild(button);
-  });
-}
-
-startStory();
-let story = {
-  // Các đoạn cốt truyện trước đây...
-  lab: {
     text: "Phòng thí nghiệm chứa những tài liệu bị bỏ dở và những mẫu vật lạ. Bạn nhận ra rằng có một sự kiện kỳ lạ đã xảy ra ở đây. Trên bàn, có một chiếc hộp bí ẩn bị khóa.",
     choices: [
       { text: "Mở chiếc hộp", next: "box" },
@@ -147,5 +111,31 @@ let story = {
       { text: "Rời khỏi bệnh viện", next: "leave" },
       { text: "Tiếp tục điều tra sâu hơn", next: "end" }
     ]
+  },
+  leave: {
+    text: "Bạn quyết định rời khỏi bệnh viện. Cuộc phiêu lưu kết thúc tại đây.",
+    choices: []
+  },
+  end: {
+    text: "Bạn đã khám phá ra những bí mật tối tăm trong bệnh viện bỏ hoang. Một sự kiện kỳ bí đã được hé lộ. Câu chuyện kết thúc tại đây.",
+    choices: []
   }
 };
+
+function startStory() {
+  showStory("start");
+}
+
+function showStory(scene) {
+  storyText.textContent = story[scene].text;
+  choicesContainer.innerHTML = "";
+
+  story[scene].choices.forEach(choice => {
+    let button = document.createElement("button");
+    button.textContent = choice.text;
+    button.onclick = () => showStory(choice.next);
+    choicesContainer.appendChild(button);
+  });
+}
+
+startStory();
